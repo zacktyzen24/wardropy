@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WARDROPY — Curated Looks (Affiliate)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d10;
+    --card:#0f1114;
+    --muted:#9aa3ad;
+    --glass: rgba(255,255,255,0.03);
+    --accent1: #ff7a59;
+    --accent2: #7c5cff;
+    --accent3: #21d4ff;
+    --text:#e6eef8;
+    --radius:16px;
+    --max:1200px;
+  }
+  /* Light mode variables (swapped when .light on body) */
+  body.light {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --muted: #54606f;
+    --glass: rgba(2,6,23,0.03);
+    --text:#0b1220;
+    --accent1: #ff6b4a;
+    --accent2: #5c3bff;
+    --accent3: #08b7e6;
+    background: linear-gradient(180deg,#fff,#f3f6fb);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.06), transparent 6%),
+      radial-gradient(900px 500px at 95% 80%, rgba(33,212,255,0.03), transparent 6%),
+      var(--bg);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+  }
+
+  .wrap{ max-width:var(--max); margin:0 auto; }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    margin-bottom:26px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:14px;
+  }
+  .logo{
+    width:58px; height:58px; border-radius:12px;
+    background: linear-gradient(135deg,var(--accent2),var(--accent1));
+    display:flex; align-items:center; justify-content:center; font-family: "Playfair Display", serif;
+    font-size:20px; font-weight:700; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .brand h1{ margin:0; font-size:18px; letter-spacing: -0.4px; color:var(--text) }
+  .sub{ font-size:13px; color:var(--muted); margin-top:2px; }
+
+  .controls{ display:flex; gap:10px; align-items:center; }
+  .mode-btn{
+    background:transparent; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px; cursor:pointer; color:var(--muted);
+  }
+  .mode-btn:hover{ transform:translateY(-2px); }
+
+  /* Hero */
+  .hero{
+    display:grid; grid-template-columns: 1fr 480px; gap:28px; align-items:center; margin-bottom:28px;
+  }
+  .eyebrow{ display:inline-block; font-size:13px; color:var(--accent2); background: rgba(124,92,255,0.06); padding:8px 12px; border-radius:999px; font-weight:700; margin-bottom:14px; }
+
+  .hero h2{ font-family:"Playfair Display",serif; font-size:40px; margin:4px 0 12px 0; color: var(--text); line-height:1.02; }
+  .hero p.lead{ color:var(--muted); margin:0 0 18px 0; font-size:16px; max-width:62ch; }
+
+  .cta-row{ display:flex; gap:12px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+  .btn{
+    padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer; border:0;
+    display:inline-flex; gap:10px; align-items:center;
+  }
+  .btn-primary{ background:linear-gradient(90deg,var(--accent1), var(--accent2)); color:#081018; box-shadow: 0 10px 30px rgba(124,92,255,0.12); }
+  .btn-ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+
+  .hero-right{
+    position:relative; border-radius:18px; overflow:hidden; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+  }
+  .visual{
+    position:relative; height:320px; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), transparent),
+      radial-gradient(600px 240px at 10% 20%, rgba(124,92,255,0.05), transparent 6%),
+      linear-gradient(180deg,#0b0d10, #0f1114);
+  }
+
+  /* Product grid */
+  .products{ margin-top:18px; display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+  .product{
+    background: linear-gradient(180deg, rgba(255,255,255,0.018), transparent);
+    border-radius:14px; padding:12px; border:1px solid rgba(255,255,255,0.03);
+    transition: transform .22s, box-shadow .22s;
+    display:flex; flex-direction:column; min-height:260px;
+  }
+  .product:hover{ transform: translateY(-8px); box-shadow: 0 30px 50px rgba(0,0,0,0.6); }
+  .p-media{ height:160px; border-radius:10px; overflow:hidden; background:#111; display:flex; align-items:end; justify-content:center; }
+  .p-media img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .4s ease; }
+  .product:hover .p-media img{ transform: scale(1.05) rotate(-0.8deg); }
+  .p-info{ display:flex; align-items:center; justify-content:space-between; padding-top:10px; gap:10px; }
+  .p-title{ font-weight:800; font-size:14px; color:var(--text); }
+  .p-meta{ color:var(--muted); font-size:13px; max-width:70%; }
+
+  .p-actions{ margin-top:12px; display:flex; gap:8px; align-items:center; margin-top:auto; }
+  .buy{ flex:1; padding:10px 12px; border-radius:10px; background: linear-gradient(90deg,var(--accent2),var(--accent3)); font-weight:800; color:#07101a; text-decoration:none; text-align:center; }
+  .wish{ width:44px; height:44px; border-radius:10px; background: rgba(255,255,255,0.02); display:inline-grid; place-items:center; border:1px solid rgba(255,255,255,0.03); cursor:pointer; color:var(--muted) }
+
+  /* Modal */
+  .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.85)); z-index:1200; }
+  .modal{ width:clamp(320px,86vw,720px); border-radius:14px; background: linear-gradient(180deg,#0c0e11, #0f1114); padding:18px; border:1px solid rgba(255,255,255,0.03); box-shadow: 0 30px 60px rgba(0,0,0,0.7); color: var(--text); }
+  .modal h3{ margin:0 0 8px 0; font-family:"Playfair Display",serif; }
+  .modal .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:start; }
+  .modal .m-media{ border-radius:10px; overflow:hidden; background:#000; height:180px; background-size:cover; background-position:center; }
+  .close-btn{ background:transparent; border:0; color:var(--muted); cursor:pointer; font-size:18px; padding:6px; }
+
+  footer{ margin-top:28px; display:flex; justify-content:space-between; color:var(--muted); font-size:13px; align-items:center; gap:12px; }
+
+  @media (max-width:1100px){
+    .hero{ grid-template-columns: 1fr; }
+    .products{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width:700px){
+    nav{ display:none; }
+    .products{ grid-template-columns: 1fr; }
+    .hero-right{ order:-1; }
+    .visual{ height:220px; }
+  }
+
+  @keyframes floaty {
+    0% { transform: translateY(0) rotateZ(-1deg); }
+    50% { transform: translateY(-10px) rotateZ(1deg); }
+    100% { transform: translateY(0) rotateZ(-1deg); }
+  }
+  .float-card.animated{ animation: floaty 6s ease-in-out infinite; }
+
+  a:focus, button:focus { outline: 3px solid rgba(124,92,255,0.16); outline-offset:3px; border-radius:8px; }
+
+  /* small helper for brand bio card */
+  .bio{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:12px; padding:14px; border:1px solid rgba(255,255,255,0.03); margin-top:18px;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">W</div>
+        <div>
+          <h1>WARDROPY</h1>
+          <div class="sub">Timeless style • Modern fashion</div>
+        </div>
+      </div>
+
+      <div class="controls" role="region" aria-label="Controls">
+        <button class="mode-btn" id="toggleMode" aria-pressed="false">🌙 Dark / ☀️ Day</button>
+      </div>
+    </header>
+
+    <section class="hero" role="region" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <div class="eyebrow">Curated • Affiliate Picks</div>
+        <h2 id="heroTitle">Curated Looks for Every Day — Shop with confidence</h2>
+        <p class="lead">WARDROPY brings curated outfits, accessories, and lifestyle essentials together. Click any Buy button to open the affiliate offer in a new tab.</p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" id="shopAll">Shop curated looks</button>
+          <button class="btn btn-ghost" id="aboutOpen">About WARDROPY</button>
+        </div>
+
+        <div class="bio" id="brandBio" hidden>
+          <strong>About WARDROPY</strong>
+          <p style="margin:.4rem 0 0 0">WARDROPY is your ultimate destination for timeless style and modern fashion. Designed for both men and women, we bring together the best of clothing, accessories, and lifestyle essentials—all in one place. At WARDROPY, we believe fashion is more than what you wear—it’s how you express yourself. Our curated collections blend trend, comfort, and individuality, empowering you to define your own style with confidence. From everyday basics to statement pieces, from minimal classics to bold designs, WARDROPY offers everything you need to create a wardrobe that truly reflects you.</p>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="false">
+        <div class="visual" id="visualScene" aria-hidden="true">
+          <div class="float-card animated" style="left:28px; top:36px; transform:rotate(-4deg); width:220px; height:300px;">
+            <div class="f-img" style="background-image:url('data:image/jpeg;base64,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'); height:72%; background-size:cover;"></div>
+            <div class="f-meta" style="padding:10px;">
+              <div style="max-width:70%">
+                <div class="f-title" style="font-weight:800;color:var(--text)">Modern Polo</div>
+                <div class="f-sub" style="font-size:12px;color:var(--muted)">Clean, everyday</div>
+              </div>
+              <div class="f-price" style="color:var(--accent1);font-weight:800">$118</div>
+            </div>
+          </div>
+
+          <div class="float-card animated" style="right:18px; top:28px; width:200px; height:260px; transform: rotate(6deg); animation-delay:.6s;">
+            <div class="f-img" style="background-image:url('https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR7S8F7C7M9-_22xm1Vv62yzROVK96Gw7z83D-vskGHa8e5NLKca0wnJPjFM73UL8lm5E3vVmlamJ5KnO5RSYNaSMSDVhiJMlnuCvnnpno'); height:70%; background-size:cover;"></div>
+            <div class="f-meta" style="padding:10px;">
+              <div style="max-width:70%">
+                <div class="f-title" style="font-weight:800;color:var(--text)">Street Tee</div>
+                <div class="f-sub" style="font-size:12px;color:var(--muted)">Oversized fit</div>
+              </div>
+              <div class="f-price" style="color:var(--accent1);font-weight:800">$39</div>
+            </div>
+          </div>
+
+          <div class="float-card animated" style="left:120px; bottom:10px; width:240px; height:320px; transform: rotate(-2deg); animation-delay:1.1s;">
+            <div class="f-img" style="background-image:url('https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQF6WXi41q8oPjWSGmZdNY0u48zLGiROdQkMV-f98S7RefPBZmunlh8VsrCy63o1os7Iv64wZxXEeNzhh-UmnMwOkWKdFxlzy2c0ENDi2fiyLGbEYW70Q&usqp=CAc'); height:72%; background-size:cover;"></div>
+            <div class="f-meta" style="padding:10px;">
+              <div style="max-width:70%">
+                <div class="f-title" style="font-weight:800;color:var(--text)">Smart Jeans</div>
+                <div class="f-sub" style="font-size:12px;color:var(--muted)">Casual & versatile</div>
+              </div>
+              <div class="f-price" style="color:var(--accent1);font-weight:800">$89</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="looks">
+      <h3 style="font-family:Playfair Display, serif; font-size:22px; margin:8px 0 14px 0;">Curated Looks — Shop by category</h3>
+      <div class="products" id="productsGrid" aria-live="polite"></div>
+    </section>
+
+    <footer>
+      <div>© <strong>WARDROPY</strong> — Affiliate Collections</div>
+      <div style="color:var(--muted)">Made with care • Links open in a new tab</div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modal" role="dialog" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h3 id="modalTitle">Product</h3>
+        <button class="close-btn" id="modalClose" aria-label="Close modal">✕</button>
+      </div>
+      <div class="cols">
+        <div class="m-media" id="modalImage"></div>
+        <div class="m-body">
+          <div id="modalName" style="font-weight:800;font-size:18px"></div>
+          <div id="modalDesc" style="color:var(--muted);margin-top:8px"></div>
+          <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+            <a id="modalBuy" class="buy" href="#" target="_blank" rel="noopener">Buy with affiliate</a>
+            <button class="wish" id="modalWish" title="Save to wishlist">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* Product data using your affiliate links and product names (as provided).
+   Images use picsum placeholders — replace with real product images later for best conversions.
+*/
+
+const products = [
+  // Polos (7)
+  {
+    id: 'polo-1',
+    name: 'polo — 1',
+    price: '₹369',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250906/smuR/68bbd8e78bfb9009ace2b4b0/-473Wx593H-702212102-black-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-colourblock-regular-fit-polo-t-shirt%2Fp%2F702212102_black%3F'
+  },
+  {
+    id: 'polo-2',
+    name: 'polo — 2',
+    price: '₹319',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250910/Fh22/68c1b06e3d468c61abe24ae0/-473Wx593H-702234541-black-MODEL2.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-colour-block-regular-fit-polo-t-shirt%2Fp%2F702234541_black'
+  },
+  {
+    id: 'polo-3',
+    name: 'polo — 3',
+    price: '₹319',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250908/zWpf/68bedf828bfb9009ace9ded0/-473Wx593H-702221883-white-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-colourblock-regular-fit-polo-t-shirt%2Fp%2F702221883_white'
+  },
+  {
+    id: 'polo-4',
+    name: 'polo — 4',
+    price: '₹369',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251013/JYGr/68ecf1603d468c61ab5e176c/-473Wx593H-702389493-blue-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-colour-block-regular-fit-t-shirt%2Fp%2F702389493_blue'
+  },
+  {
+    id: 'polo-5',
+    name: 'polo — 5',
+    price: '₹319',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250910/pRyQ/68c1b4c48bfb9009acf51a2c/-473Wx593H-702236624-green-MODEL2.png',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-regular-fit-polo-t-shirt-with-short-sleeves%2Fp%2F702236624_green'
+  },
+  {
+    id: 'polo-6',
+    name: 'polo — 6',
+    price: '₹319',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251019/03IY/68f451ecd3b48604f83bbe2b/-473Wx593H-702407962-green-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fneonomad-men-regular-fit-polo-t-shirt%2Fp%2F702407962_green'
+  },
+  {
+    id: 'polo-7',
+    name: 'polo — 7',
+    price: '₹360',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250213/QHx1/67addebd59f8353980c96a28/-473Wx593H-701203517-black-MODEL4.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fhivora-men-regular-fit-polo-t-shirt%2Fp%2F701203517_black'
+  },
+
+  // Loose / Oversized T-Shirts (9)
+  {
+    id: 'loose-1',
+    name: 'loose — 1',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250317/AC3U/67d7e85b59f83539803bbded/-473Wx593H-701339056-beige-MODEL3.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-men-graphic-print-oversized-crew-neck-t-shirt%2Fp%2F701339056_beige%3F'
+  },
+  {
+    id: 'loose-2',
+    name: 'loose — 2',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250512/5yNN/68212c7a55340d4b4f2caf9d/-473Wx593H-701568301-purple-MODEL3.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-men-typographic-print-oversized-crew-neck-t-shirt%2Fp%2F701568301_purple'
+  },
+  {
+    id: 'loose-3',
+    name: 'loose — 3',
+    price: '₹330',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250930/LGuV/68dae26f8bfb9009ac473315/-473Wx593H-702337968-black-MODEL3.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fsupa-dupa-men-typographic-print-oversized-crew-neck-t-shirt%2Fp%2F702337968_black'
+  },
+  {
+    id: 'loose-4',
+    name: 'loose — 4',
+    price: '₹330',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250930/OeL6/68dae2638bfb9009ac4731ac/-473Wx593H-702337989-black-MODEL4.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fsupa-dupa-men-typographic-print-oversized-crew-neck-t-shirt%2Fp%2F702337989_black'
+  },
+  {
+    id: 'loose-5',
+    name: 'loose — 5',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250317/6Bsq/67d7ecc059f83539803c5c6b/-473Wx593H-701339108-olive-MODEL2.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-men-graphic-print-oversized-crew-neck-t-shirt%2Fp%2F701339108_olive'
+  },
+  {
+    id: 'loose-6',
+    name: 'loose — 6',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250317/9UNb/67d7e8b659f83539803bca4f/-473Wx593H-701339196-red-MODEL2.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-lewis-hamilton-men-typographic-print-oversized-crew-neck-t-shirt%2Fp%2F701339196_red%3F'
+  },
+  {
+    id: 'loose-7',
+    name: 'loose — 7',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250512/qQRX/68212ae07a6cd4182f277131/-473Wx593H-701568277-black-MODEL2.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-f1-men-graphic-print-oversized-crew-neck-t-shirt%2Fp%2F701568277_black'
+  },
+  {
+    id: 'loose-8',
+    name: 'loose — 8',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250512/wbKC/68212a567a6cd4182f275dfd/-473Wx593H-701568224-black-MODEL2.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fcrazymonk-men-geometric-print-oversized-crew-neck-t-shirt%2Fp%2F701568224_black'
+  },
+  {
+    id: 'loose-9',
+    name: 'loose — 9',
+    price: '₹420',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250930/XLpj/68dae2323d468c61ab39d6f4/-473Wx593H-702337849-black-MODEL3.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fsupa-dupa-men-typographic-print-oversized-crew-neck-t-shirt%2Fp%2F702337849_black'
+  },
+
+  // Jeans (3)
+  {
+    id: 'jeans-1',
+    name: 'jeans — 1',
+    price: '₹500',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250117/EbZW/6789b063663dbe1c5fdd4164/-473Wx593H-701063128-blue-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fkotty-men-cotton-low-rise-straight-clean-jeans%2Fp%2F701063128_blue'
+  },
+  {
+    id: 'jeans-2',
+    name: 'jeans — 2',
+    price: '₹500',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250311/aEve/67d0656d2960820c49e3914c/-473Wx593H-701329072-grey-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fkotty-men-low-rise-relaxed-fit-clean-jeans%2Fp%2F701329072_grey'
+  },
+  {
+    id: 'jeans-3',
+    name: 'jeans — 3',
+    price: 'MRP₹2,000',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251029/1NP8/6902498388d6d62ff8abcaab/-473Wx593H-702438941-cream-MODEL.jpg',
+    affiliateUrl: 'https://linksredirect.com/?cid=252073&source=linkkit&url=https%3A%2F%2Fwww.ajio.com%2Fbuda-jeans-co-men-baggy-fit-cargo-pants-with-insert-pockets-%2Fp%2F702438941_cream%3F'
+  },
+
+  // clnk.in short links (20)
+  {
+    id: 'short-1',
+    name: 'short — 1',
+    price: '₹1,039',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250410/oOn2/67f7af1c7a6cd4182fbc1d1f/-473Wx593H-701432522-multi-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBKJ'
+  },
+  {
+    id: 'short-2',
+    name: 'short — 2',
+    price: '₹999',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250414/0lRz/67fd250f7a6cd4182fcc81ba/-473Wx593H-701454348-blue-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBKL'
+  },
+  {
+    id: 'short-3',
+    name: 'short — 3',
+    price: '₹805',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240429/CSvu/662fd28c16fd2c6e6adc1dfe/-473Wx593H-467035369-black-MODEL6.jpg',
+    affiliateUrl: 'https://clnk.in/xBKU'
+  },
+  {
+    id: 'short-4',
+    name: 'short — 4',
+    price: '₹1,039',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250410/oOn2/67f7af1c7a6cd4182fbc1d1f/-473Wx593H-701432522-multi-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBKJ'
+  },
+  {
+    id: 'short-5',
+    name: 'short — 5',
+    price: '₹709',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250415/crtD/67fdb8497a6cd4182fcfa6f9/-473Wx593H-701454624-grey-MODEL.jpg',
+    affiliateUrl: 'https://clnk.in/xBMB'
+  },
+  {
+    id: 'short-6',
+    name: 'short — 6',
+    price: '₹1,099',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250414/ue3E/67fd390f55340d4b4fd43888/-473Wx593H-701454624-blue-MODEL3.jpg',
+    affiliateUrl: 'https://clnk.in/xBMD'
+  },
+  {
+    id: 'short-7',
+    name: 'short — 7',
+    price: '₹709',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250415/3mkP/67fdb80355340d4b4fd6f596/-473Wx593H-701454624-greymelange-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBMH'
+  },
+  {
+    id: 'short-8',
+    name: 'short — 8',
+    price: '₹1,099',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250623/2T6d/68590dbb2b1ad9265b590d1a/-473Wx593H-701454624-charcoal-MODEL2.jpg',
+    affiliateUrl: 'https://clnk.in/xBMI'
+  },
+  {
+    id: 'short-9',
+    name: 'short — 9',
+    price: '₹645',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20230621/0Ssx/649288d6d55b7d0c639036d7/-473Wx593H-464188082-green-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBMJ'
+  },
+  {
+    id: 'short-10',
+    name: 'short — 10',
+    price: '₹645',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250414/RTQ7/67fd390f55340d4b4fd4387e/-473Wx593H-701454624-blue-MODEL4.jpg',
+    affiliateUrl: 'https://clnk.in/xBMK'
+  },
+  {
+    id: 'short-11',
+    name: 'short — 11',
+    price: '₹875',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250808/ALhw/6895e1198bfb9009ac70c4d6/-473Wx593H-702090417-tan-MODEL8.jpg',
+    affiliateUrl: 'https://clnk.in/xBML'
+  },
+  {
+    id: 'short-12',
+    name: 'short — 12',
+    price: '₹799',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250709/z38G/686e6033e590ff066e377da2/-473Wx593H-701629075-brown-MODEL.jpg',
+    affiliateUrl: 'https://clnk.in/xBMO'
+  },
+  {
+    id: 'short-13',
+    name: 'short — 13',
+    price: '₹440',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250709/z38G/686e6033e590ff066e377da2/-473Wx593H-701629075-brown-MODEL.jpg',
+    affiliateUrl: 'https://clnk.in/xBMP'
+  },
+  {
+    id: 'short-14',
+    name: 'short — 14',
+    price: '₹578',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250924/N08V/68d3fb9a8bfb9009ac2f15a7/-473Wx593H-702307016-coffee-MODEL2.jpg',
+    affiliateUrl: 'https://clnk.in/xBMQ'
+  },
+  {
+    id: 'short-15',
+    name: 'short — 15',
+    price: '₹600',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250814/7VKx/689dcb728bfb9009ac83ad0d/-473Wx593H-702115910-beige-MODEL2.jpg',
+    affiliateUrl: 'https://clnk.in/xBMR'
+  },
+  {
+    id: 'short-16',
+    name: 'short — 16',
+    price: '₹551',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250814/1Isj/689dd0af8bfb9009ac841513/-473Wx593H-702115949-white-MODEL5.jpg',
+    affiliateUrl: 'https://clnk.in/xBMS'
+  },
+  {
+    id: 'short-17',
+    name: 'short — 17',
+    price: '₹440',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250619/abKo/68536c107a6cd4182fc0a05d/-473Wx593H-701695686-blue-MODEL2.jpg',
+    affiliateUrl: 'https://clnk.in/xBMT'
+  },
+  {
+    id: 'short-18',
+    name: 'short — 18',
+    price: '₹670',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20220629/7nMA/62bb4b26f997dd03e2a540f0/-473Wx593H-469234311-green-MODEL7.jpg',
+    affiliateUrl: 'https://clnk.in/xBMU'
+  },
+  {
+    id: 'short-19',
+    name: 'short — 19',
+    price: '₹899',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250704/JI0n/68677745e590ff066e21eb11/-473Wx593H-466854054-black-MODEL7.jpg',
+    affiliateUrl: 'https://clnk.in/xBMV'
+  },
+  {
+    id: 'short-20',
+    name: 'short — 20',
+    price: '₹760',
+    img: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250205/6uEP/67a351062960820c4962a404/-473Wx593H-701168160-blue-MODEL4.jpg',
+    affiliateUrl: 'https://clnk.in/xBMX'
+  }
+];
+
+/* Render product cards */
+const grid = document.getElementById('productsGrid');
+
+function escapeHtml(s){ return (s+'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escapeAttr(s){ return (s+'').replace(/"/g, '&quot;'); }
+
+function createProductCard(p){
+  const el = document.createElement('article');
+  el.className = 'product';
+  el.setAttribute('tabindex', '0');
+  el.innerHTML = `
+    <div class="p-media" role="img" aria-label="${escapeHtml(p.name)}">
+      <img loading="lazy" src="${escapeAttr(p.img)}" alt="${escapeAttr(p.name)}">
+    </div>
+    <div class="p-info">
+      <div>
+        <div class="p-title">${escapeHtml(p.name)}</div>
+        <div class="p-meta">${escapeHtml(p.price)}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="p-price" style="font-weight:800;color:var(--accent1);font-size:14px">${escapeHtml(p.price)}</div>
+      </div>
+    </div>
+    <div class="p-actions">
+      <a class="buy" href="${escapeAttr(p.affiliateUrl)}" target="_blank" rel="noopener" data-aff-id="${escapeAttr(p.id)}">Buy • ${escapeHtml(p.price)}</a>
+      <button class="wish" aria-label="Save ${escapeAttr(p.name)}" data-id="${escapeAttr(p.id)}">♡</button>
+    </div>
+  `;
+  el.querySelector('.p-media').addEventListener('click', () => openModal(p));
+  el.querySelector('.wish').addEventListener('click', (e) => toggleWish(e, p));
+  return el;
+}
+
+function renderProducts(){
+  grid.innerHTML = '';
+  products.forEach(p => grid.appendChild(createProductCard(p)));
+}
+renderProducts();
+
+/* Modal logic */
+const modal = document.getElementById('modal');
+const modalImage = document.getElementById('modalImage');
+const modalName = document.getElementById('modalName');
+const modalDesc = document.getElementById('modalDesc');
+const modalBuy = document.getElementById('modalBuy');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(product){
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden', 'false');
+  modalImage.style.backgroundImage = `url(${product.img})`;
+  modalName.textContent = product.name;
+  modalDesc.textContent = 'Price: ' + product.price;
+  modalBuy.href = product.affiliateUrl;
+  modalBuy.setAttribute('data-aff-id', product.id);
+  modalBuy.focus();
+}
+function closeModal(){
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden', 'true');
+}
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+/* Wishlist (localStorage) */
+function toggleWish(e, product){
+  const id = product.id;
+  const list = JSON.parse(localStorage.getItem('wardropy_wishlist') || '[]');
+  const idx = list.indexOf(id);
+  const btn = e.currentTarget;
+  if(idx === -1){ list.push(id); btn.textContent = '♥'; btn.style.color = 'var(--accent1)'; }
+  else { list.splice(idx,1); btn.textContent = '♡'; btn.style.color = ''; }
+  localStorage.setItem('wardropy_wishlist', JSON.stringify(list));
+}
+
+/* Parallax for hero */
+const scene = document.getElementById('visualScene');
+if(scene){
+  scene.addEventListener('pointermove', (e) => {
+    const rect = scene.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const dx = (e.clientX - cx) / rect.width;
+    const dy = (e.clientY - cy) / rect.height;
+    Array.from(scene.querySelectorAll('.float-card')).forEach((card, i) => {
+      const rx = dx * (6 + i*3);
+      const ry = dy * (8 + i*2);
+      card.style.transform = `translate3d(${rx}px, ${ry}px, 0) rotate(${(i%2?-1:1)*(5+i*2)}deg)`;
+    });
+  });
+  scene.addEventListener('pointerleave', () => {
+    Array.from(scene.querySelectorAll('.float-card')).forEach((card) => card.style.transform = '');
+  });
+}
+
+/* Mode toggle (dark / day) */
+const toggleBtn = document.getElementById('toggleMode');
+toggleBtn.addEventListener('click', () => {
+  const isLight = document.body.classList.toggle('light');
+  toggleBtn.setAttribute('aria-pressed', String(isLight));
+  toggleBtn.textContent = isLight ? '☀️ Day / 🌙 Dark' : '🌙 Dark / ☀️ Day';
+});
+
+/* CTA wiring */
+document.getElementById('shopAll').addEventListener('click', () => {
+  document.getElementById('looks').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('aboutOpen').addEventListener('click', () => {
+  const bio = document.getElementById('brandBio');
+  bio.hidden = !bio.hidden;
+  if(!bio.hidden) bio.scrollIntoView({behavior:'smooth'});
+});
+
+/* Track affiliate clicks (console + navigator.sendBeacon example) */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[data-aff-id]');
+  if(a){
+    const aff = a.getAttribute('data-aff-id');
+    console.log('Affiliate click:', aff, a.href);
+    // Example: sendBeacon to your own tracking endpoint (uncomment & update)
+    // navigator.sendBeacon('/track-aff', JSON.stringify({id:aff, url:a.href, time:Date.now()}));
+  }
+});
+
+/* Accessibility: keyboard open */
+grid.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter'){
+    const article = e.target.closest('.product');
+    if(article){
+      const idx = Array.from(grid.children).indexOf(article);
+      if(idx >= 0) openModal(products[idx]);
+    }
+  }
+});
+</script>
+</body>
+</html>
